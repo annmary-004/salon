@@ -11,12 +11,12 @@ const WhatsAppButton = () => {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group fixed bottom-6 right-6 z-50 grid h-16 w-16 place-items-center rounded-full bg-[#25D366] text-white shadow-2xl shadow-green-500/25 transition hover:scale-110 active:scale-95"
+      className="group fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-lg"
     >
       <div className="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-white text-black px-4 py-2 rounded-xl text-sm font-bold opacity-0 group-hover:opacity-100 transition-all whitespace-nowrap pointer-events-none">
         WhatsApp booking
       </div>
-      <MessageCircle size={28} />
+      <MessageCircle size={25} />
     </a>
   )
 }

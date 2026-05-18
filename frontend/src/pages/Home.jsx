@@ -75,7 +75,7 @@ function Hero() {
       </div>
 
       <div className="lux-container relative z-10 -mt-14 grid gap-3 pb-10 sm:grid-cols-2 lg:grid-cols-4">
-        {premiumHighlights.map((item, index) => (
+        {premiumHighlights.map((item) => (
           <div key={item.label} className="glass-card rounded-3xl p-5">
             <p className="text-3xl font-black text-[color:var(--text)]">{item.value}</p>
             <p className="mt-1 text-xs font-black uppercase tracking-[0.16em] text-[color:var(--faint)]">{item.label}</p>
