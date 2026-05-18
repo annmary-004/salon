@@ -10,9 +10,28 @@ export default function Navbar() {
   const { user, logout } = useContext(AuthContext)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 18)
+    let ticking = false
+    let lastScrolled = window.scrollY > 18
+    setScrolled(lastScrolled)
+
+    const updateScrolled = () => {
+      const nextScrolled = window.scrollY > 18
+      if (nextScrolled !== lastScrolled) {
+        lastScrolled = nextScrolled
+        setScrolled(nextScrolled)
+      }
+      ticking = false
+    }
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true
+        window.requestAnimationFrame(updateScrolled)
+      }
+    }
+
     onScroll()
-    window.addEventListener('scroll', onScroll)
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 

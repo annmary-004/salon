@@ -85,14 +85,16 @@ button, input, select, textarea {
     background: var(--surface);
     border: 1px solid var(--border);
     box-shadow: var(--shadow);
-    backdrop-filter: blur(22px);
+    backdrop-filter: blur(12px);
+    transform: translateZ(0);
   }
 
   .glass-card {
     background: linear-gradient(145deg, var(--surface-strong), rgba(255,255,255,0.045));
     border: 1px solid var(--border);
     box-shadow: 0 20px 70px rgba(0,0,0,0.24);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
+    transform: translateZ(0);
   }
 
   .gold-text {
@@ -143,7 +145,7 @@ button, input, select, textarea {
     border: 1px solid var(--border);
     text-decoration: none;
     font-weight: 700;
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(10px);
     transition: background 180ms ease, transform 180ms ease, border-color 180ms ease;
   }
 
@@ -208,6 +210,26 @@ button, input, select, textarea {
 @keyframes drift {
   0%, 100% { transform: translate3d(0,0,0); }
   50% { transform: translate3d(0,-12px,0); }
+}
+
+@media (max-width: 768px), (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .glass-panel,
+  .glass-card,
+  .ghost-button {
+    backdrop-filter: none;
+  }
+
+  .lux-button,
+  .ghost-button,
+  .glass-card,
+  .glass-panel,
+  img {
+    transition-duration: 120ms !important;
+  }
 }
 
 @media (max-width: 640px) {

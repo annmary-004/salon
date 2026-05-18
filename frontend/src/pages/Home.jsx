@@ -47,6 +47,8 @@ function Hero() {
           exit={{ opacity: 0, scale: 1.02 }}
           transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
           className="absolute inset-0 h-full w-full object-cover"
+          decoding="async"
+          fetchPriority="high"
         />
       </AnimatePresence>
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.86),rgba(0,0,0,0.42),rgba(0,0,0,0.72))]" />
@@ -78,7 +80,7 @@ function Hero() {
           className="glass-panel hidden rounded-[34px] p-5 lg:block"
         >
           <div className="relative aspect-[4/5] overflow-hidden rounded-[26px]">
-            <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&q=90&w=900" alt="Luxury salon treatment" className="h-full w-full object-cover" />
+            <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&q=90&w=900" alt="Luxury salon treatment" className="h-full w-full object-cover" decoding="async" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/78 via-transparent to-black/10" />
             <button className="absolute left-5 top-5 grid h-14 w-14 place-items-center rounded-full bg-white/18 text-white backdrop-blur-xl transition hover:scale-105">
               <Play size={22} fill="currentColor" />
@@ -141,7 +143,7 @@ function Services() {
                 className="group overflow-hidden rounded-[30px] glass-card"
               >
                 <div className="relative h-64 overflow-hidden">
-                  <img src={service.image} alt={service.name} className="h-full w-full object-cover transition duration-700 group-hover:scale-110" />
+                  <img src={service.image} alt={service.name} className="h-full w-full object-cover transition duration-700 group-hover:scale-110" loading="lazy" decoding="async" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/84 via-black/8 to-transparent" />
                   <div className="absolute left-5 top-5 grid h-12 w-12 place-items-center rounded-2xl bg-white/16 text-white backdrop-blur-xl">
                     <Icon size={22} />
@@ -190,7 +192,7 @@ function Stylists() {
               whileHover={{ y: -8 }}
               className="glass-card rounded-[30px] p-4"
             >
-              <img src={stylist.avatar} alt={stylist.name} className="h-72 w-full rounded-[24px] object-cover" />
+              <img src={stylist.avatar} alt={stylist.name} className="h-72 w-full rounded-[24px] object-cover" loading="lazy" decoding="async" />
               <div className="p-3">
                 <div className="mt-4 flex items-start justify-between gap-4">
                   <div>
@@ -241,9 +243,9 @@ function Experience() {
           className="glass-panel rounded-[36px] p-4"
         >
           <div className="grid gap-4 sm:grid-cols-2">
-            <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?auto=format&fit=crop&q=90&w=900" alt="Salon interior" className="h-80 rounded-[28px] object-cover sm:h-[520px]" />
+            <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?auto=format&fit=crop&q=90&w=900" alt="Salon interior" className="h-80 rounded-[28px] object-cover sm:h-[520px]" loading="lazy" decoding="async" />
             <div className="grid gap-4">
-              <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&q=90&w=900" alt="Makeup station" className="h-60 rounded-[28px] object-cover" />
+              <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&q=90&w=900" alt="Makeup station" className="h-60 rounded-[28px] object-cover" loading="lazy" decoding="async" />
               <div className="rounded-[28px] border border-white/10 bg-white/8 p-6">
                 <p className="text-sm font-black uppercase tracking-[0.2em] text-[color:var(--faint)]">Conversion focus</p>
                 <p className="mt-4 text-4xl font-black gold-text">4 steps</p>
