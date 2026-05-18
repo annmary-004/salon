@@ -26,26 +26,24 @@ export default function Navbar() {
     ['contact', 'Contact Us'],
   ]
 
-  const linkClass = 'rounded-full px-4 py-2 text-sm font-semibold text-[color:var(--muted)] transition hover:bg-white/10 hover:text-[color:var(--text)]'
-
   return (
-    <header className="relative z-50 border-b border-white/10 bg-black/[0.88]">
-      <nav className="lux-container flex items-center justify-between gap-4 py-3 sm:py-4">
-        <Link to="/" onClick={() => setOpen(false)} className="flex flex-shrink-0 items-center gap-2">
-          <span className="font-display font-black text-lg sm:text-xl text-[color:var(--text)] hover:text-[#d9b56f] transition">
+    <header className="site-header">
+      <nav className="lux-container site-nav">
+        <Link to="/" onClick={() => setOpen(false)} className="site-brand">
+          <span className="font-display">
             LUXE SALON
           </span>
         </Link>
 
-        <div className="hidden items-center gap-1 lg:flex">
+        <div className="site-nav-links">
           {navItems.map(([id, label]) => (
-            <button key={id} onClick={() => scrollTo(id)} className={linkClass}>{label}</button>
+            <button key={id} onClick={() => scrollTo(id)} className="site-nav-link">{label}</button>
           ))}
         </div>
 
-        <div className="hidden items-center gap-3 lg:flex">
-          <Link to="/book" className="lux-button text-sm">
-            <Calendar size={16} className="hidden sm:inline" /> Book Now
+        <div className="site-nav-actions">
+          <Link to="/book" className="lux-button site-book-button">
+            <Calendar size={16} /> Book Now
           </Link>
           {user && (
             <button
@@ -63,7 +61,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setOpen((current) => !current)}
-          className="grid h-11 w-11 place-items-center rounded-full border border-white/[0.12] bg-white/[0.08] text-[color:var(--text)] lg:hidden"
+          className="site-menu-button"
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
         >
@@ -72,13 +70,13 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div className="border-t border-white/10 bg-black/[0.95] lg:hidden">
-          <div className="lux-container grid gap-2 py-4">
+        <div className="site-mobile-menu">
+          <div className="lux-container site-mobile-menu-inner">
             {navItems.map(([id, label]) => (
               <button
                 key={id}
                 onClick={() => scrollTo(id)}
-                className="rounded-2xl px-4 py-3 text-left text-sm font-bold text-[color:var(--muted)] hover:bg-white/10 hover:text-[color:var(--text)]"
+                className="site-mobile-link"
               >
                 {label}
               </button>
@@ -86,7 +84,7 @@ export default function Navbar() {
             <Link
               to="/book"
               onClick={() => setOpen(false)}
-              className="lux-button mt-2 text-sm"
+              className="lux-button site-mobile-book"
             >
               <Calendar size={16} /> Book Now
             </Link>
