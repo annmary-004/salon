@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
 import {
   ArrowRight,
   Calendar,
@@ -20,42 +19,23 @@ import {
   premiumHighlights,
 } from '../data/salonData'
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
-}
-
 function Hero() {
-  const [slide, setSlide] = useState(0)
-
-  useEffect(() => {
-    const timer = setInterval(() => setSlide((current) => (current + 1) % heroSlides.length), 5200)
-    return () => clearInterval(timer)
-  }, [])
-
-  const current = heroSlides[slide]
+  const current = heroSlides[0]
 
   return (
     <section id="home" className="relative -mt-20 min-h-[100svh] overflow-hidden pt-20">
-      <AnimatePresence mode="sync">
-        <motion.img
-          key={current.image}
-          src={current.image}
-          alt={current.title}
-          initial={{ opacity: 0, scale: 1.08 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 1.02 }}
-          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute inset-0 h-full w-full object-cover"
-          decoding="async"
-          fetchPriority="high"
-        />
-      </AnimatePresence>
+      <img
+        src={current.image}
+        alt={current.title}
+        className="absolute inset-0 h-full w-full object-cover"
+        decoding="async"
+        fetchPriority="high"
+      />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.86),rgba(0,0,0,0.42),rgba(0,0,0,0.72))]" />
       <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[color:var(--bg)] to-transparent" />
 
       <div className="lux-container relative z-10 grid min-h-[calc(100svh-80px)] items-center gap-12 py-16 lg:grid-cols-[1.02fr_0.78fr]">
-        <motion.div variants={fadeUp} initial="hidden" animate="show" className="max-w-3xl">
+        <div className="max-w-3xl">
           <span className="label-pill"><Crown size={13} /> {current.eyebrow}</span>
           <h1 className="mt-6 font-display text-[clamp(4.2rem,16vw,10.5rem)] font-black leading-[0.78] tracking-[-0.06em] text-white">
             {current.title.split(' ')[0]} <span className="gold-text block">{current.title.split(' ').slice(1).join(' ') || 'Luxe'}</span>
@@ -71,21 +51,16 @@ function Hero() {
               Explore Services <ArrowRight size={18} />
             </a>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.2, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="glass-panel hidden rounded-[34px] p-5 lg:block"
-        >
+        <div className="glass-panel hidden rounded-[34px] p-5 lg:block">
           <div className="relative aspect-[4/5] overflow-hidden rounded-[26px]">
             <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&q=90&w=900" alt="Luxury salon treatment" className="h-full w-full object-cover" decoding="async" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/78 via-transparent to-black/10" />
-            <button className="absolute left-5 top-5 grid h-14 w-14 place-items-center rounded-full bg-white/18 text-white backdrop-blur-xl transition hover:scale-105">
+            <button className="absolute left-5 top-5 grid h-14 w-14 place-items-center rounded-full bg-white/18 text-white transition hover:scale-105">
               <Play size={22} fill="currentColor" />
             </button>
-            <div className="absolute bottom-5 left-5 right-5 rounded-3xl border border-white/15 bg-black/30 p-5 text-white backdrop-blur-xl">
+            <div className="absolute bottom-5 left-5 right-5 rounded-3xl border border-white/15 bg-black/50 p-5 text-white">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-white/58">Next opening</p>
               <div className="mt-2 flex items-end justify-between gap-4">
                 <div>
@@ -96,21 +71,15 @@ function Hero() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
 
       <div className="lux-container relative z-10 -mt-14 grid gap-3 pb-10 sm:grid-cols-2 lg:grid-cols-4">
         {premiumHighlights.map((item, index) => (
-          <motion.div
-            key={item.label}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.32 + index * 0.08 }}
-            className="glass-card rounded-3xl p-5"
-          >
+          <div key={item.label} className="glass-card rounded-3xl p-5">
             <p className="text-3xl font-black text-[color:var(--text)]">{item.value}</p>
             <p className="mt-1 text-xs font-black uppercase tracking-[0.16em] text-[color:var(--faint)]">{item.label}</p>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>
@@ -121,31 +90,26 @@ function Services() {
   return (
     <section id="services" className="py-20 sm:py-28">
       <div className="lux-container">
-        <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.35 }} className="max-w-2xl">
+        <div className="max-w-2xl">
           <span className="label-pill">Curated Services</span>
           <h2 className="mt-5 font-display text-5xl font-black leading-none tracking-[-0.04em] sm:text-7xl">
             Every ritual feels <span className="gold-text">bespoke</span>.
           </h2>
           <p className="mt-5 text-[color:var(--muted)]">Transparent pricing, real durations, premium products and a booking path that never makes your client think twice.</p>
-        </motion.div>
+        </div>
 
         <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {featuredServices.map((service, index) => {
+          {featuredServices.map((service) => {
             const Icon = service.icon
             return (
-              <motion.article
+              <article
                 key={service._id}
-                initial={{ opacity: 0, y: 28 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.55, delay: index * 0.06 }}
-                whileHover={{ y: -8 }}
-                className="group overflow-hidden rounded-[30px] glass-card"
+                className="overflow-hidden rounded-[30px] glass-card"
               >
                 <div className="relative h-64 overflow-hidden">
-                  <img src={service.image} alt={service.name} className="h-full w-full object-cover transition duration-700 group-hover:scale-110" loading="lazy" decoding="async" />
+                  <img src={service.image} alt={service.name} className="h-full w-full object-cover" loading="lazy" decoding="async" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/84 via-black/8 to-transparent" />
-                  <div className="absolute left-5 top-5 grid h-12 w-12 place-items-center rounded-2xl bg-white/16 text-white backdrop-blur-xl">
+                  <div className="absolute left-5 top-5 grid h-12 w-12 place-items-center rounded-2xl bg-white/16 text-white">
                     <Icon size={22} />
                   </div>
                   <div className="absolute bottom-5 left-5 right-5">
@@ -160,7 +124,7 @@ function Services() {
                     <span className="flex items-center gap-2 text-sm font-bold text-[color:var(--muted)]"><Clock size={16} /> {service.duration} min</span>
                   </div>
                 </div>
-              </motion.article>
+              </article>
             )
           })}
         </div>
@@ -174,22 +138,17 @@ function Stylists() {
     <section id="stylists" className="py-20 sm:py-28">
       <div className="lux-container">
         <div className="mb-12 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="max-w-2xl">
+          <div className="max-w-2xl">
             <span className="label-pill"><UserRoundCheck size={13} /> Select Your Artist</span>
             <h2 className="mt-5 font-display text-5xl font-black leading-none tracking-[-0.04em] sm:text-7xl">Specialists with signature hands.</h2>
-          </motion.div>
+          </div>
           <Link to="/book" className="ghost-button lg:w-auto">Choose in booking <ArrowRight size={18} /></Link>
         </div>
 
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {featuredStylists.map((stylist, index) => (
-            <motion.article
+          {featuredStylists.map((stylist) => (
+            <article
               key={stylist._id}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ delay: index * 0.07 }}
-              whileHover={{ y: -8 }}
               className="glass-card rounded-[30px] p-4"
             >
               <img src={stylist.avatar} alt={stylist.name} className="h-72 w-full rounded-[24px] object-cover" loading="lazy" decoding="async" />
@@ -209,7 +168,7 @@ function Stylists() {
                   ))}
                 </div>
               </div>
-            </motion.article>
+            </article>
           ))}
         </div>
       </div>
@@ -218,12 +177,12 @@ function Stylists() {
 }
 
 function Experience() {
-  const items = ['Background image slider', 'Glass booking cards', 'Fade and slide scroll motion', 'Dark and light modes', 'WhatsApp quick booking', 'JWT ready API integration']
+  const items = ['Background image slider', 'Glass booking cards', 'Fast page browsing', 'Dark and light modes', 'WhatsApp quick booking', 'JWT ready API integration']
 
   return (
     <section id="about" className="py-20 sm:py-28">
       <div className="lux-container grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-        <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
+        <div>
           <span className="label-pill"><Instagram size={13} /> Scene Ready</span>
           <h2 className="mt-5 font-display text-5xl font-black leading-none tracking-[-0.04em] sm:text-7xl">Built for the client who notices details.</h2>
           <p className="mt-5 text-[color:var(--muted)]">Micro-interactions, layered blur, soft gradients and clean spacing create a premium booking experience without visual clutter.</p>
@@ -235,13 +194,8 @@ function Experience() {
               </div>
             ))}
           </div>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          className="glass-panel rounded-[36px] p-4"
-        >
+        </div>
+        <div className="glass-panel rounded-[36px] p-4">
           <div className="grid gap-4 sm:grid-cols-2">
             <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?auto=format&fit=crop&q=90&w=900" alt="Salon interior" className="h-80 rounded-[28px] object-cover sm:h-[520px]" loading="lazy" decoding="async" />
             <div className="grid gap-4">
@@ -253,7 +207,7 @@ function Experience() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )
