@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || 'https://salon-backend.onrender.com/api',
+    baseURL: import.meta.env.VITE_API_URL || 'https://salon-backend-kxh1.onrender.com/api',
 });
 
 // Add a request interceptor to include the token
