@@ -142,8 +142,11 @@ const seedDefaultData = async () => {
     }
 };
 
-// Database Connection
 const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/salonflow';
 
 mongoose.connect(MONGO_URI)
@@ -151,9 +154,6 @@ mongoose.connect(MONGO_URI)
         console.log('Connected to MongoDB');
         await seedAdminUser();
         await seedDefaultData();
-        app.listen(PORT, () => {
-            console.log(`Server running on port ${PORT}`);
-        });
     })
     .catch(err => {
         console.error('Database connection error:', err);
