@@ -151,10 +151,14 @@ mongoose.connect(MONGO_URI)
         console.log('Connected to MongoDB');
         await seedAdminUser();
         await seedDefaultData();
-        app.listen(PORT, () => {
-            console.log(`Server running on port ${PORT}`);
-        });
+        if (process.env.NODE_ENV !== 'production') {
+            app.listen(PORT, () => {
+                console.log(`Server running on port ${PORT}`);
+            });
+        }
     })
     .catch(err => {
         console.error('Database connection error:', err);
     });
+
+module.exports = app;
