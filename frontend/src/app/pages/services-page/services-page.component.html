@@ -1,0 +1,30 @@
+<div class="page-container">
+  <section class="section-padding bg-surface">
+    <div class="container">
+      <div class="section-header">
+        <span class="mono-label text-accent">CURATED MENU</span>
+        <h2>OUR SERVICES</h2>
+        <p class="services-desc">
+          Explore our range of minimal, precision-focused services. Designed for modern aesthetics and long-lasting impact.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        @for (service of services; track service.id) {
+          <div class="service-card" routerLink="/book" style="cursor: pointer;">
+            <div class="card-header">
+              <span class="mono-label">{{ service.category }}</span>
+              <span class="price">₹{{ service.price }}</span>
+            </div>
+            <h3>{{ service.name }}</h3>
+            <p>{{ service.description }}</p>
+            <div class="card-footer">
+              <span class="duration">{{ service.duration }} MIN</span>
+              <button class="btn-icon">→</button>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+</div>

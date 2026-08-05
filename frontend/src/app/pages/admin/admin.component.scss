@@ -1,0 +1,84 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.admin-header {
+  margin-bottom: $space-3xl;
+}
+
+.table-container {
+  overflow-x: auto;
+  @include card;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+
+  th, td {
+    padding: $space-lg;
+    border-bottom: 1px solid $border;
+  }
+
+  th {
+    @include mono-label;
+    color: $text-secondary;
+    background: $elevated;
+  }
+
+  td {
+    font-size: 14px;
+  }
+
+  tbody tr:hover {
+    background: rgba(0, 0, 0, 0.02);
+  }
+}
+
+.time {
+  font-family: $font-mono;
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.client-email {
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.status-badge {
+  @include mono-label;
+  display: inline-block;
+  padding: 4px 8px;
+  border: 1px solid currentColor;
+  background: rgba(0, 0, 0, 0.2);
+  
+  &.status-pending { color: $warning; }
+  &.status-confirmed { color: $accent; }
+  &.status-completed { color: $success; }
+  &.status-cancelled { color: $error; }
+}
+
+.actions {
+  display: flex;
+  gap: $space-sm;
+}
+
+.action-btn {
+  background: transparent;
+  border: none;
+  @include mono-label;
+  cursor: pointer;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.text-success { color: $success; }
+.text-error { color: $error; }
+.loading {
+  text-align: center;
+  padding: $space-3xl;
+  @include mono-label;
+}

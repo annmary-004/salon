@@ -1,0 +1,92 @@
+<div class="home-page">
+  
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <span class="mono-label glow-text">NEO MINIMALIST EXCELLENCE</span>
+        <h1 class="hero-title">SALON STUDIO</h1>
+        <p class="hero-desc">Ultra-modern beauty house for precision cuts, high-contrast color, and minimal skin rituals.</p>
+        
+        <div class="hero-actions">
+          <a routerLink="/book" class="btn-primary-lrg">BOOK APPOINTMENT</a>
+          <a routerLink="/services" class="btn-ghost-lrg">VIEW SERVICES</a>
+        </div>
+      </div>
+      
+      <div class="hero-image-wrapper">
+        <img src="assets/hero.jpg" alt="Minimalist Salon Studio" class="hero-img">
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES SECTION -->
+  <section id="services" class="section-padding bg-surface">
+    <div class="container">
+      <div class="section-header">
+        <span class="mono-label text-accent">01 / CURATED MENU</span>
+        <h2>FEATURED SERVICES</h2>
+      </div>
+
+      <div class="services-grid" style="margin-bottom: 40px;">
+        @for (service of services; track service.id) {
+          <div class="service-card" routerLink="/book" style="cursor: pointer;">
+            <div class="card-header">
+              <span class="mono-label">{{ service.category }}</span>
+              <span class="price">₹{{ service.price }}</span>
+            </div>
+            <h3>{{ service.name }}</h3>
+            <p>{{ service.description }}</p>
+            <div class="card-footer">
+              <span class="duration">{{ service.duration }} MIN</span>
+              <button class="btn-icon">→</button>
+            </div>
+          </div>
+        }
+      </div>
+      
+      <div style="text-align: center; margin-top: 40px;">
+        <a routerLink="/services" class="btn-ghost">VIEW ALL SERVICES</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STYLISTS SECTION -->
+  <section id="stylists" class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="mono-label text-accent">02 / THE ARTISTS</span>
+        <h2>MEET THE ARTISTS</h2>
+      </div>
+
+      <div class="stylists-grid" style="margin-bottom: 40px;">
+        @for (stylist of stylists; track stylist.id) {
+          <div class="stylist-card">
+            <div class="stylist-image-placeholder">
+              @if (stylist.avatar) {
+                <img [src]="stylist.avatar" [alt]="stylist.name">
+              } @else {
+                <div class="placeholder-geo"></div>
+              }
+            </div>
+            <div class="stylist-info">
+              <span class="mono-label text-accent">{{ stylist.role }}</span>
+              <h3>{{ stylist.name }}</h3>
+              <div class="tags">
+                @for (spec of stylist.specialization; track spec) {
+                  <span class="tag">{{ spec }}</span>
+                }
+              </div>
+              <div class="rating">★ {{ stylist.rating }} ({{ stylist.reviews }})</div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div style="text-align: center; margin-top: 40px;">
+        <a routerLink="/about" class="btn-ghost">LEARN MORE ABOUT US</a>
+      </div>
+    </div>
+  </section>
+
+</div>

@@ -1,0 +1,154 @@
+<div class="booking-page section-padding">
+  <div class="container">
+    
+    <div class="booking-header">
+      <span class="mono-label text-accent">RESERVATION</span>
+      <h2>BOOK APPOINTMENT</h2>
+      
+      <div class="steps-indicator">
+        <div class="step" [class.active]="step >= 1" (click)="step >= 1 ? step = 1 : null">1. SERVICE</div>
+        <div class="step" [class.active]="step >= 2" (click)="step >= 2 ? step = 2 : null">2. STYLIST</div>
+        <div class="step" [class.active]="step >= 3" (click)="step >= 3 ? step = 3 : null">3. DATE & TIME</div>
+        <div class="step" [class.active]="step >= 4">4. CONFIRM</div>
+      </div>
+    </div>
+
+    @if (error) {
+      <div class="error-banner">{{ error }}</div>
+    }
+
+    <div class="booking-content">
+      
+      <!-- STEP 1: SERVICE -->
+      @if (step === 1) {
+        <div class="step-container">
+          <h3 class="step-title">SELECT SERVICE</h3>
+          <div class="grid-2">
+            @for (service of services; track service.id) {
+              <div class="selectable-card" 
+                   [class.selected]="selectedService?.id === service.id"
+                   (click)="selectService(service)">
+                <div class="card-top">
+                  <h4>{{ service.name }}</h4>
+                  <span class="price">₹{{ service.price }}</span>
+                </div>
+                <p class="text-muted">{{ service.duration }} MIN | {{ service.category }}</p>
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      <!-- STEP 2: STYLIST -->
+      @if (step === 2) {
+        <div class="step-container">
+          <div class="flex-between mb-lg">
+            <h3 class="step-title">SELECT STYLIST</h3>
+            <button class="btn-ghost" (click)="goBack()">← BACK</button>
+          </div>
+          
+          <div class="grid-2">
+            @for (stylist of stylists; track stylist.id) {
+              <div class="selectable-card stylist-select" 
+                   [class.selected]="selectedStylist?.id === stylist.id"
+                   (click)="selectStylist(stylist)">
+                <div class="avatar-wrap">
+                  @if (stylist.avatar) {
+                    <img [src]="stylist.avatar" [alt]="stylist.name">
+                  }
+                </div>
+                <div class="info">
+                  <h4>{{ stylist.name }}</h4>
+                  <span class="mono-label">{{ stylist.role }}</span>
+                  <div class="rating">★ {{ stylist.rating }}</div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      <!-- STEP 3: DATE & TIME -->
+      @if (step === 3) {
+        <div class="step-container">
+          <div class="flex-between mb-lg">
+            <h3 class="step-title">SELECT DATE & TIME</h3>
+            <button class="btn-ghost" (click)="goBack()">← BACK</button>
+          </div>
+
+          <div class="date-picker-wrap">
+            <label class="mono-label">DATE</label>
+            <input type="date" class="input-field mt-sm" 
+                   [(ngModel)]="selectedDate" 
+                   (change)="onDateChange()">
+          </div>
+
+          <div class="time-slots mt-xl">
+            <label class="mono-label mb-md block">AVAILABLE SLOTS</label>
+            
+            @if (availableSlots.length > 0) {
+              <div class="slots-grid">
+                @for (time of availableSlots; track time) {
+                  <button class="slot-btn" 
+                          [class.selected]="selectedTime === time"
+                          (click)="selectTime(time)">
+                    {{ time }}
+                  </button>
+                }
+              </div>
+            } @else {
+              <p class="text-muted">No slots available for this date. Please select another date.</p>
+            }
+          </div>
+
+          <div class="mt-xl text-right">
+            <button class="btn-primary-lrg" [disabled]="!selectedTime" (click)="goToConfirm()">
+              CONTINUE →
+            </button>
+          </div>
+        </div>
+      }
+
+      <!-- STEP 4: CONFIRM -->
+      @if (step === 4) {
+        <div class="step-container">
+          <div class="flex-between mb-lg">
+            <h3 class="step-title">CONFIRMATION</h3>
+            <button class="btn-ghost" (click)="goBack()">← EDIT</button>
+          </div>
+
+          <div class="summary-card">
+            <div class="summary-row">
+              <span class="mono-label">SERVICE</span>
+              <span>{{ selectedService?.name }} (₹{{ selectedService?.price }})</span>
+            </div>
+            <div class="summary-row">
+              <span class="mono-label">STYLIST</span>
+              <span>{{ selectedStylist?.name }}</span>
+            </div>
+            <div class="summary-row">
+              <span class="mono-label">DATE</span>
+              <span>{{ selectedDate }}</span>
+            </div>
+            <div class="summary-row">
+              <span class="mono-label">TIME</span>
+              <span class="text-accent">{{ selectedTime }}</span>
+            </div>
+
+            <div class="mt-lg">
+              <label class="mono-label">SPECIAL REQUESTS (OPTIONAL)</label>
+              <textarea class="input-field mt-sm" [(ngModel)]="notes" rows="3"></textarea>
+            </div>
+          </div>
+
+          <div class="mt-xl text-right">
+            <button class="btn-primary-lrg w-full-mobile" (click)="submitBooking()" [disabled]="isLoading">
+              {{ isLoading ? 'PROCESSING...' : 'CONFIRM BOOKING' }}
+            </button>
+          </div>
+        </div>
+      }
+
+    </div>
+  </div>
+</div>

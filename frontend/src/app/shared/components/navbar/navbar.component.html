@@ -1,0 +1,28 @@
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a routerLink="/" class="brand">SALON STUDIO</a>
+    
+    <div class="nav-links">
+      <a routerLink="/" class="nav-link">HOME</a>
+      <a routerLink="/services" class="nav-link">SERVICES</a>
+      <a routerLink="/about" class="nav-link">ABOUT</a>
+      <a routerLink="/contact" class="nav-link">CONTACT</a>
+      
+      @if (authService.isAuthenticated()) {
+        <a routerLink="/bookings" class="nav-link">MY BOOKINGS</a>
+        @if (authService.isAdmin()) {
+          <a routerLink="/admin" class="nav-link text-accent">ADMIN</a>
+        }
+      }
+    </div>
+
+    <div class="nav-actions">
+      @if (authService.isAuthenticated()) {
+        <button class="btn-ghost" (click)="logout()">LOGOUT</button>
+      } @else {
+        <a routerLink="/auth" class="btn-ghost">LOGIN</a>
+      }
+      <a routerLink="/book" class="btn-primary">BOOK NOW</a>
+    </div>
+  </div>
+</nav>

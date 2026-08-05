@@ -1,0 +1,71 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.page-container {
+  min-height: calc(100vh - 80px);
+}
+
+.services-desc {
+  max-width: 600px;
+  margin: $space-lg auto 0;
+  text-align: center;
+  font-size: 18px;
+  color: $text-secondary;
+}
+
+// Services Grid
+.services-grid {
+  @include grid(2, $space-xl);
+  
+  @media (max-width: 768px) {
+    @include grid(1, $space-lg);
+  }
+}
+
+.service-card {
+  @include card;
+  padding: $space-xl;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .card-header {
+    @include flex-between;
+    margin-bottom: $space-lg;
+  }
+
+  .price {
+    font-family: $font-mono;
+    font-weight: 700;
+    color: $text-primary;
+  }
+
+  h3 {
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    flex-grow: 1;
+    margin-bottom: $space-xl;
+  }
+
+  .card-footer {
+    @include flex-between;
+    border-top: 1px solid $border;
+    padding-top: $space-md;
+  }
+
+  .duration {
+    @include mono-label;
+    color: $text-secondary;
+  }
+
+  .btn-icon {
+    background: transparent;
+    border: none;
+    color: $accent;
+    font-size: 20px;
+    cursor: pointer;
+  }
+}

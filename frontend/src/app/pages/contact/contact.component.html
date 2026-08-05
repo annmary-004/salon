@@ -1,0 +1,50 @@
+<div class="page-container">
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="mono-label text-accent">REACH OUT</span>
+        <h2>CONTACT US</h2>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>SAY HELLO</h3>
+          <p class="desc">For any inquiries, collaborations, or styling questions, please reach out to us using the form or our contact details.</p>
+          
+          <div class="info-block">
+            <span class="mono-label">ADDRESS</span>
+            <p>123 Minimalist Avenue<br>Cyber City, DL 122002</p>
+          </div>
+          
+          <div class="info-block">
+            <span class="mono-label">PHONE</span>
+            <p>+91 98765 43210</p>
+          </div>
+          
+          <div class="info-block">
+            <span class="mono-label">HOURS</span>
+            <p>Mon - Sat: 10AM - 8PM<br>Sun: Closed</p>
+          </div>
+        </div>
+        
+        <div class="contact-form-wrapper">
+          <form class="contact-form" (submit)="submitForm($event)">
+            <div class="form-group">
+              <label>NAME</label>
+              <input type="text" required>
+            </div>
+            <div class="form-group">
+              <label>EMAIL</label>
+              <input type="email" required>
+            </div>
+            <div class="form-group">
+              <label>MESSAGE</label>
+              <textarea rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%">SEND MESSAGE</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

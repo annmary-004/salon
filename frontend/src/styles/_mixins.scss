@@ -1,0 +1,162 @@
+@use 'variables' as *;
+
+@mixin container {
+  max-width: $container-max;
+  margin: 0 auto;
+  padding-left: $container-padding;
+  padding-right: $container-padding;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin mono-label {
+  font-family: $font-mono;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $accent;
+}
+
+@mixin heading-xl {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: $text-primary;
+}
+
+@mixin heading-lg {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: $text-primary;
+}
+
+@mixin heading-md {
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: $text-primary;
+}
+
+@mixin body-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: $text-secondary;
+}
+
+@mixin card {
+  background: $surface;
+  border: 1px solid $border;
+  transition: border-color $transition-base, box-shadow $transition-base;
+
+  &:hover {
+    border-color: $border-hover;
+  }
+}
+
+@mixin card-active {
+  border-color: $accent !important;
+  box-shadow: $shadow-glow;
+}
+
+@mixin button-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: $accent;
+  color: $white;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  border: none;
+  cursor: pointer;
+  transition: background $transition-fast, transform $transition-fast, box-shadow $transition-fast;
+
+  &:hover {
+    background: $accent-dark;
+    transform: translateY(-1px);
+    box-shadow: $shadow-glow;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+@mixin button-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 24px;
+  background: transparent;
+  color: $text-primary;
+  font-weight: 700;
+  font-size: 14px;
+  border: 1px solid $border;
+  cursor: pointer;
+  transition: border-color $transition-fast, background $transition-fast, transform $transition-fast;
+
+  &:hover {
+    border-color: $border-hover;
+    background: rgba(0, 0, 0, 0.04);
+    transform: translateY(-1px);
+  }
+}
+
+@mixin input-field {
+  width: 100%;
+  padding: 14px 16px;
+  background: $bg-main;
+  border: 1px solid $border;
+  color: $text-primary;
+  font-family: $font-primary;
+  font-size: 14px;
+  outline: none;
+  transition: border-color $transition-fast, box-shadow $transition-fast;
+
+  &::placeholder {
+    color: $text-muted;
+  }
+
+  &:focus {
+    border-color: $accent;
+    box-shadow: 0 0 0 3px $accent-subtle;
+  }
+}
+
+@mixin section-padding {
+  padding: $space-4xl 0;
+
+  @media (max-width: 768px) {
+    padding: $space-3xl 0;
+  }
+}
+
+@mixin grid($cols: 1, $gap: $space-lg) {
+  display: grid;
+  grid-template-columns: repeat($cols, 1fr);
+  gap: $gap;
+}

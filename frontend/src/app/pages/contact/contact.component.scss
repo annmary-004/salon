@@ -1,0 +1,76 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.page-container {
+  min-height: calc(100vh - 80px);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-4xl;
+  max-width: 1000px;
+  margin: 0 auto;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: $space-3xl;
+  }
+}
+
+.contact-info {
+  h3 {
+    margin-bottom: $space-sm;
+  }
+  
+  .desc {
+    color: $text-secondary;
+    margin-bottom: $space-2xl;
+  }
+}
+
+.info-block {
+  margin-bottom: $space-xl;
+  
+  span {
+    display: block;
+    margin-bottom: $space-xs;
+  }
+  
+  p {
+    color: $text-primary;
+    line-height: 1.6;
+  }
+}
+
+.contact-form-wrapper {
+  background: $surface;
+  padding: $space-3xl;
+  border: 1px solid $border;
+  border-radius: 4px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xl;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+  
+  label {
+    @include mono-label;
+  }
+  
+  input, textarea {
+    @include input-field;
+    color: $text-primary;
+    
+    &::placeholder {
+      color: $text-muted;
+    }
+  }
+}

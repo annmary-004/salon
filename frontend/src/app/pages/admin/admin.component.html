@@ -1,0 +1,63 @@
+<div class="admin-page section-padding">
+  <div class="container">
+    
+    <div class="admin-header">
+      <span class="mono-label text-accent">MANAGEMENT</span>
+      <h2>ADMIN DASHBOARD</h2>
+    </div>
+
+    @if (isLoading) {
+      <div class="loading">LOADING DATA...</div>
+    } @else {
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>DATE & TIME</th>
+              <th>CLIENT</th>
+              <th>SERVICE</th>
+              <th>STYLIST</th>
+              <th>STATUS</th>
+              <th>ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (booking of bookings; track booking.id) {
+              <tr>
+                <td>
+                  <div class="date">{{ booking.date }}</div>
+                  <div class="time text-accent">{{ booking.time }}</div>
+                </td>
+                <td>
+                  <div class="client-name">{{ booking.user?.name }}</div>
+                  <div class="client-email text-muted">{{ booking.user?.email }}</div>
+                </td>
+                <td>{{ booking.service?.name }}</td>
+                <td>{{ booking.stylist?.name }}</td>
+                <td>
+                  <span class="status-badge" [class]="'status-' + booking.status">
+                    {{ booking.status }}
+                  </span>
+                </td>
+                <td>
+                  <div class="actions">
+                    @if (booking.status === 'pending') {
+                      <button class="action-btn text-accent" (click)="updateStatus(booking.id, 'confirmed')">CONFIRM</button>
+                    }
+                    @if (booking.status === 'confirmed') {
+                      <button class="action-btn text-success" (click)="updateStatus(booking.id, 'completed')">COMPLETE</button>
+                    }
+                    @if (booking.status !== 'completed' && booking.status !== 'cancelled') {
+                      <button class="action-btn text-error" (click)="updateStatus(booking.id, 'cancelled')">CANCEL</button>
+                    }
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+
+  </div>
+</div>

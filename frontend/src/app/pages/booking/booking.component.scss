@@ -1,0 +1,184 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.booking-header {
+  text-align: center;
+  margin-bottom: $space-3xl;
+}
+
+.steps-indicator {
+  display: flex;
+  justify-content: center;
+  gap: $space-lg;
+  margin-top: $space-xl;
+  border-top: 1px solid $border;
+  padding-top: $space-lg;
+  
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: $space-sm;
+    align-items: center;
+  }
+}
+
+.step {
+  @include mono-label;
+  color: $text-muted;
+  cursor: pointer;
+  transition: color $transition-fast;
+  
+  &.active {
+    color: $accent;
+  }
+}
+
+.booking-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.step-container {
+  animation: fadeIn 300ms ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.step-title {
+  margin-bottom: $space-xl;
+  border-bottom: 1px solid $border;
+  padding-bottom: $space-md;
+}
+
+.grid-2 {
+  @include grid(2, $space-md);
+  
+  @media (max-width: 600px) {
+    @include grid(1, $space-md);
+  }
+}
+
+.selectable-card {
+  @include card;
+  padding: $space-lg;
+  cursor: pointer;
+  
+  &:hover {
+    border-color: $border-hover;
+    background: $elevated;
+  }
+  
+  &.selected {
+    @include card-active;
+  }
+}
+
+.card-top {
+  @include flex-between;
+  margin-bottom: $space-xs;
+  
+  h4 {
+    margin: 0;
+  }
+  
+  .price {
+    font-family: $font-mono;
+    color: $accent;
+  }
+}
+
+.stylist-select {
+  display: flex;
+  gap: $space-md;
+  align-items: center;
+  
+  .avatar-wrap {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: $elevated-2;
+    flex-shrink: 0;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  
+  .info {
+    h4 { margin-bottom: 2px; }
+  }
+}
+
+.date-picker-wrap {
+  max-width: 300px;
+}
+
+.input-field {
+  @include input-field;
+}
+
+.slots-grid {
+  @include grid(4, $space-sm);
+  
+  @media (max-width: 600px) {
+    @include grid(3, $space-sm);
+  }
+}
+
+.slot-btn {
+  @include button-ghost;
+  padding: 10px;
+  font-family: $font-mono;
+  
+  &.selected {
+    background: $accent;
+    color: $white;
+    border-color: $accent;
+  }
+}
+
+.summary-card {
+  @include card;
+  padding: $space-xl;
+}
+
+.summary-row {
+  @include flex-between;
+  padding: $space-md 0;
+  border-bottom: 1px solid $border;
+  
+  &:first-child { padding-top: 0; }
+}
+
+.btn-primary-lrg {
+  @include button-primary;
+  padding: 16px 32px;
+}
+
+.btn-ghost {
+  @include button-ghost;
+  padding: 8px 16px;
+  font-size: 12px;
+}
+
+.flex-between { @include flex-between; }
+.mb-lg { margin-bottom: $space-lg; }
+.mb-md { margin-bottom: $space-md; }
+.mt-sm { margin-top: $space-sm; }
+.mt-xl { margin-top: $space-xl; }
+.block { display: block; }
+.text-right { text-align: right; }
+
+.error-banner {
+  background: rgba($error, 0.1);
+  border: 1px solid rgba($error, 0.3);
+  color: $error;
+  padding: $space-md;
+  margin-bottom: $space-lg;
+  text-align: center;
+}

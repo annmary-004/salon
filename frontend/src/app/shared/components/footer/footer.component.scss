@@ -1,0 +1,74 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as *;
+
+.footer {
+  background-color: $bg-main;
+  border-top: 1px solid $border;
+  padding-top: $space-4xl;
+  margin-top: auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: $space-3xl;
+  padding-bottom: $space-3xl;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: $space-xl;
+  }
+}
+
+.brand-text {
+  font-family: $font-mono;
+  font-size: 24px;
+  letter-spacing: 0.1em;
+  margin-bottom: $space-sm;
+}
+
+.brand-desc {
+  color: $text-muted;
+  max-width: 300px;
+}
+
+.footer-title {
+  @include mono-label;
+  display: block;
+  margin-bottom: $space-md;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+
+  a {
+    color: $text-secondary;
+    font-size: 14px;
+    
+    &:hover {
+      color: $text-primary;
+    }
+  }
+}
+
+.footer-contact {
+  p {
+    color: $text-secondary;
+    font-size: 14px;
+    margin-bottom: $space-xs;
+  }
+}
+
+.footer-bottom {
+  border-top: 1px solid $border;
+  padding: $space-md 0;
+  text-align: center;
+  
+  p {
+    @include mono-label;
+    color: $text-muted;
+    margin: 0;
+  }
+}

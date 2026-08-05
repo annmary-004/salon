@@ -1,0 +1,37 @@
+<div class="page-container">
+  <section class="section-padding bg-surface">
+    <div class="container" style="max-width: 800px;">
+      <div class="section-header">
+        <span class="mono-label text-accent">YOUR APPOINTMENTS</span>
+        <h2>MY BOOKINGS</h2>
+      </div>
+
+      @if (isLoading) {
+        <p>Loading your bookings...</p>
+      } @else if (error) {
+        <div class="error-banner">{{ error }}</div>
+      } @else if (bookings.length === 0) {
+        <div class="empty-state">
+          <p>You have no bookings yet.</p>
+          <a routerLink="/book" class="btn-primary" style="margin-top: 20px; display: inline-block;">BOOK NOW</a>
+        </div>
+      } @else {
+        <div class="bookings-list">
+          @for (booking of bookings; track booking.id) {
+            <div class="booking-card">
+              <div class="booking-header">
+                <h3>{{ booking.service?.name }}</h3>
+                <span class="status" [class]="booking.status">{{ booking.status | uppercase }}</span>
+              </div>
+              <div class="booking-details">
+                <p><strong>Date:</strong> {{ booking.date }}</p>
+                <p><strong>Time:</strong> {{ booking.time }}</p>
+                <p><strong>Stylist:</strong> {{ booking.stylist?.name }}</p>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </section>
+</div>

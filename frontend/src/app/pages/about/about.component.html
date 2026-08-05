@@ -1,0 +1,42 @@
+<div class="page-container">
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="mono-label text-accent">OUR VISION</span>
+        <h2>REDEFINING BEAUTY</h2>
+        <p class="about-desc">
+          Salon Studio was founded with a single mission: to create a minimal, high-end environment where expert stylists can focus on precision and artistry. We believe in high-contrast color, sharp cuts, and bespoke rituals tailored to you.
+        </p>
+      </div>
+
+      <div class="section-header" style="margin-top: 80px;">
+        <span class="mono-label text-accent">THE ARTISTS</span>
+        <h2>EXPERT STYLISTS</h2>
+      </div>
+
+      <div class="stylists-grid">
+        @for (stylist of stylists; track stylist.id) {
+          <div class="stylist-card">
+            <div class="stylist-image-placeholder">
+              @if (stylist.avatar) {
+                <img [src]="stylist.avatar" [alt]="stylist.name">
+              } @else {
+                <div class="placeholder-geo"></div>
+              }
+            </div>
+            <div class="stylist-info">
+              <span class="mono-label text-accent">{{ stylist.role }}</span>
+              <h3>{{ stylist.name }}</h3>
+              <div class="tags">
+                @for (spec of stylist.specialization; track spec) {
+                  <span class="tag">{{ spec }}</span>
+                }
+              </div>
+              <div class="rating">★ {{ stylist.rating }} ({{ stylist.reviews }})</div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+</div>
